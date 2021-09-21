@@ -1,5 +1,5 @@
 {
-  "name": "bb-color",
+  "name": "peak-ui-component",
   "version": "0.0.4",
   "description": "A Design UI library for React",
   "main": "lib/index.js",
