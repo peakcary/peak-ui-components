@@ -1,26 +1,26 @@
 {
   "name": "peak-ui-component",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A Design UI library for React",
   "main": "lib/index.js",
   "module": "esm/index.js",
-  "author": "ParaSLee",
+  "author": "peakcary",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BB-color/BB-color.git"
+    "url": "git+https://github.com/peakcary/peak-ui-component.git"
   },
   "bugs": {
-    "url": "https://github.com/BB-color/BB-color/issues"
+    "url": "https://github.com/peakcary/peak-ui-component/issues"
   },
   "files": [
     "esm",
     "lib"
   ],
-  "homepage": "https://github.com/BB-color/BB-color#readme",
+  "homepage": "https://github.com/peakcary/peak-ui-component#readme",
   "keywords": [
-    "bb",
-    "color",
+    "peakcary",
+    "ompeak",
     "react",
     "react-component",
     "component",
