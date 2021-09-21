@@ -1,4 +1,4 @@
-# BB-color
+# peak-ui-component
 
 A Design UI library for React🎈
 
@@ -6,7 +6,7 @@ A Design UI library for React🎈
 
 ## 📦 安装 Install
 ```shell
-npm i bb-color
+npm i peak-ui-component
 ```
 
 
@@ -14,7 +14,7 @@ npm i bb-color
 
 ```js
 import React from 'react';
-import { Button } from "bb-color";
+import { Button } from "peak-ui-component";
 
 class App extends React.Component {
   render() {
@@ -28,17 +28,4 @@ class App extends React.Component {
 
 export default App;
 ```
-
-## 📙 文档 Document
-
-https://bb-color.github.io/BB-color/
-
-
-## 💡 其他 Other
-
-想像我一样构建一套属于自己的UI组件库吗？
-
-欢迎访问 [构建教程](https://juejin.im/post/5c28bbdff265da616501a8b3)
-
-
-
+ 

@@ -1,6 +1,6 @@
 {
   "name": "peak-ui-component",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A Design UI library for React",
   "main": "lib/index.js",
   "module": "esm/index.js",
