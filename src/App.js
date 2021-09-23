@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import { Alert, Button } from './components';
+import { Alert, Button,BocProps } from './components';
 
 class App extends Component {
+
   render() {
+      console.log('app init')
     return (
       <div className="App">
-        <Button text={'hhhasdasdh'}></Button>
-        <Alert text={'hhhasdasdh'}></Alert>
+        <Button text={'a'}></Button>
+        <Alert text={'b'}></Alert>
+        <BocProps text={'c'}></BocProps>
       </div>
     );
   }
