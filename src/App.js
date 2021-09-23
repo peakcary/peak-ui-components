@@ -17,6 +17,18 @@ class App extends Component {
           onConfirm={this.handleConfirm}
           readonly={false}>
         </BocProps>
+         <BocProps
+          ptype='event'
+          initialValue='${event.$utm_source}'
+          onConfirm={this.handleConfirm}
+          readonly={false}>
+        </BocProps>
+        <BocProps
+          ptype='product'
+          initialValue='${user.$mp_wx6228eb2adfba3ab4_qr_scene_str}'
+          onConfirm={this.handleConfirm}
+          readonly={false}>
+        </BocProps>
       </div>
     );
   }

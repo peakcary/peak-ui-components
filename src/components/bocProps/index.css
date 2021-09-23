@@ -3,9 +3,16 @@
 
 .select_container{
   display: flex;
+  flex-direction: column;
+}
+
+.select_row{
+  display: flex;
+  margin-top: 1rem;
 }
 
 .select_label{
+  width: 10rem;
   display: flex;
   justify-content: center;
   align-items: center;
