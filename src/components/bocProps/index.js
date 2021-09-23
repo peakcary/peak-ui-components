@@ -1,7 +1,7 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { Button, Select } from 'antd';
+import { Button, Select, Card } from 'antd';
 
 import './index.css';
 import 'antd/dist/antd.css';
@@ -22,11 +22,11 @@ function onChange(value) {
 const BocProps = ({ ptype, initialValue, readonly, onConfirm }) => {
 
   console.log('initialValue:', initialValue);
-  let v='';
-  if (ptype == 'user'){
+  let v = '';
+  if (ptype === 'user') {
     v = initialValue.split('${user.')[1];
-    v = v.substring(0,v.length-1)
-      console.log(v)
+    v = v.substring(0, v.length - 1)
+    console.log(v)
   }
 
   const [data, setData] = useState({ data: [] });
@@ -39,7 +39,7 @@ const BocProps = ({ ptype, initialValue, readonly, onConfirm }) => {
       },
     );
     setData(data.data);
-  },[]);
+  }, []);
 
 
 
@@ -50,10 +50,7 @@ const BocProps = ({ ptype, initialValue, readonly, onConfirm }) => {
 
   return (
     <>
-      <div className="container">
-        <div className='title'>
-          用户属性
-        </div>
+      <Card title='用户属性' style={{ width: 600 }}>
         <div className='select_container'>
           <div className='select_label'>
             请选择用户属性:
@@ -75,10 +72,10 @@ const BocProps = ({ ptype, initialValue, readonly, onConfirm }) => {
             </Select>
           </div>
         </div>
-        <div>
-          <Button onClick={() => { onConfirm(selectedValue)}}>插入</Button>
+        <div className='select_btn'>
+          <Button onClick={() => { onConfirm(selectedValue) }}>插入</Button>
         </div>
-      </div>
+      </Card>
     </>
   )
 }

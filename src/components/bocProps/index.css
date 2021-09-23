@@ -1,19 +1,8 @@
-.container {
-  padding: 1rem;
-  width: 30rem;
-  border: 1px solid red;
-}
 
-.title {
-  height: 5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 
 .select_container{
   display: flex;
-  background-color: gainsboro;
 }
 
 .select_label{
@@ -21,4 +10,8 @@
   justify-content: center;
   align-items: center;
   margin-right: 1rem;
+}
+
+.select_btn{
+  margin-top: 1rem;
 }
