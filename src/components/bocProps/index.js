@@ -1,4 +1,4 @@
-import Reacts from 'react';
+import React, { useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Button, Select } from 'antd';
@@ -7,82 +7,76 @@ import './index.css';
 import 'antd/dist/antd.css';
 
 const { Option } = Select;
+
+let selectedValue = '';
 function onChange(value) {
-  console.log(`selected ${value}`);
+  // 用户属性：${ user.$mp_nickname }
+  // 事件属性： ${ event.$mp_content } 只能触发型计划插入，只能插入触发选择的事件属性
+  // 白名单属性：${ tag.{ tagcode }.$name } 待确认
+  // 产品属性:${ item.属性名称 }
+  let v = "${user." + value + "}";
+  console.log(v)
+  selectedValue = v;
 }
 
-function onBlur() {
-  console.log('blur');
-}
+const BocProps = ({ ptype, initialValue, readonly, onConfirm }) => {
 
-function onFocus() {
-  console.log('focus');
-}
+  console.log('initialValue:', initialValue);
+  let v='';
+  if (ptype == 'user'){
+    v = initialValue.split('${user.')[1];
+    v = v.substring(0,v.length-1)
+      console.log(v)
+  }
 
-function onSearch(val) {
-  console.log('search:', val);
-}
-
-function testApi(params) {
-  axios.get('/api/events/all?check_permission=false', {
-    params: {},
-    headers: { token: '$6666ebc5599b852f3a8f81c1fdcd3575' }
-  })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-}
+  const [data, setData] = useState({ data: [] });
+  useEffect(async () => {
+    let url = '/api/property/user/properties';
+    const data = await axios.get(url,
+      {
+        params: {},
+        headers: { token: '$6666ebc5599b852f3a8f81c1fdcd3575' }
+      },
+    );
+    setData(data.data);
+  },[]);
 
 
-const BocProps = ({ text }) => {
 
-  console.log('2222222')
-
-
-  // const [data, setData] = useState({ data: [] });
-
-  // useEffect(async () => {
-  //   let url = '/api/events/all?check_permission=false';
-  //   const result = await axios.get(url,
-  //     {
-  //       params: {},
-  //       headers: { token: '$6666ebc5599b852f3a8f81c1fdcd3575' }
-  //     },
-  //   );
-
-  //   console.log('111:', result.data)
-
-  //   setData(result.data);
-  // });
+  const children = [];
+  for (let i = 0, l = data.length; i < l; i++) {
+    children.push(<Option key={data[i].name}>{data[i].cname}</Option>);
+  }
 
   return (
     <>
-      <div className="container">这是一个BocProps {text}<Button onClick={testApi} type="primary">Primary Button</Button>
-
-        <Select
-          showSearch
-          style={{ width: 200 }}
-          placeholder="Select a person"
-          optionFilterProp="children"
-          onChange={onChange}
-          onFocus={onFocus}
-          onBlur={onBlur}
-          onSearch={onSearch}
-          filterOption={(input, option) =>
-            option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-          }
-        >
-          <Option value="jack">Jack</Option>
-          <Option value="lucy">Lucy</Option>
-          <Option value="tom">Tom</Option>
-        </Select>
-
+      <div className="container">
+        <div className='title'>
+          用户属性
+        </div>
+        <div className='select_container'>
+          <div className='select_label'>
+            请选择用户属性:
+          </div>
+          <div className='select_value'>
+            <Select
+              disabled={readonly}
+              defaultValue={v}
+              showSearch
+              style={{ width: 200 }}
+              placeholder="Select a person"
+              optionFilterProp="children"
+              onChange={onChange}
+              filterOption={(input, option) =>
+                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              }
+            >
+              {children}
+            </Select>
+          </div>
+        </div>
         <div>
-
-
+          <Button onClick={() => { onConfirm(selectedValue)}}>插入</Button>
         </div>
       </div>
     </>
@@ -90,11 +84,11 @@ const BocProps = ({ text }) => {
 }
 
 
-
-
-
 BocProps.propTypes = {
-  text: PropTypes.any
+  ptype: PropTypes.string,// 类型 用户属性 user 事件属性event 产品属性product 白名单white
+  initialValue: PropTypes.string,//初始值
+  readonly: PropTypes.bool,// 只读 false
+  onConfirm: PropTypes.func// 插入
 };
 
 export default BocProps;
