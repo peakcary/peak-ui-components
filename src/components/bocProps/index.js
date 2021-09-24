@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { Component, } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Button, Select, Card } from 'antd';
@@ -14,7 +14,7 @@ class BocProps extends Component {
     this.state = {
       data: [],
       dataC: [],
-      selectedValue:""
+      selectedValue: ""
     }
   }
 
@@ -24,7 +24,7 @@ class BocProps extends Component {
     if (ptype === 'event') {
       url = `/api/v2/sf/events/all?project=default&cache=false&invisible=false&check_permission=false`;
     }
-    if (ptype === 'product'){
+    if (ptype === 'product') {
       url = `/api/v2/sf/items/type?project=default&cache=false&invisible=false&check_permission=false`;
     }
     axios.get(url,
@@ -42,8 +42,8 @@ class BocProps extends Component {
   onChange = (value) => {
     console.log(value)
     let selectedValue = "";
-    const {ptype} = this.props;
-    if(ptype === 'user'){
+    const { ptype } = this.props;
+    if (ptype === 'user') {
       selectedValue = "${user." + value + "}";
       this.setState({
         selectedValue
@@ -104,29 +104,29 @@ class BocProps extends Component {
 
   render() {
     const { ptype, readonly } = this.props;
-    const { dataC} = this.state;
+    const { dataC } = this.state;
 
     let title = '';
     let label = "";
     let labelC = "";
     if (ptype === 'user') {
       title = '用户属性';
-      label = "请选择用户属性:";
+      label = "用户属性:";
     }
     if (ptype === 'event') {
       title = '事件属性';
-      label = "请选择事件:";
-      labelC = "请选择事件属性:";
+      label = "事件类型";
+      labelC = "事件属性";
     }
     if (ptype === 'product') {
       title = '产品属性';
-      label = "请选择产品:";
-      labelC = "请选择产品属性:";
+      label = "产品类型";
+      labelC = "产品属性";
     }
 
     return (
       <>
-        <Card title={title} >
+        <Card bordered={false} extra={<a href="#">Close</a>} title={title} >
           <div className='select_container'>
             <div className='select_row'>
               <div className='select_label'>
@@ -151,7 +151,7 @@ class BocProps extends Component {
                 </Select>
               </div>
             </div>
-            {(ptype === 'event' || ptype === 'product'  ) && <div className='select_row'>
+            {(ptype === 'event' || ptype === 'product') && <div className='select_row'>
               <div className='select_label'>
                 {labelC}
               </div>
@@ -168,15 +168,21 @@ class BocProps extends Component {
                     option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                   }
                 >
-                  { this.state.dataC.map(item => {
+                  {dataC.map(item => {
                     return <Option key={item.name}>{item.cname}</Option>
                   })}
                 </Select>
               </div>
             </div>}
           </div>
+          <div className='select_line'></div>
           <div className='select_btn'>
-            <Button onClick={this.onConfirm}>插入</Button>
+            <Button
+              style={{  borderColor: '#fff' }} onClick={this.onConfirm}>取消</Button>
+            <Button type="primary"
+            className="btn"
+            style={{ backgroundColor: '#00BF8A', borderColor: '#00BF8A' }}
+            onClick={this.onConfirm}>插入</Button>
           </div>
         </Card>
       </>
