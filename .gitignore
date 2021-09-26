@@ -9,10 +9,10 @@
 /coverage
 
 # production
-/build
-/esm
-/lib
-/.docz
+# # /build
+# /esm
+# /lib
+# /.docz
 
 # misc
 .DS_Store
